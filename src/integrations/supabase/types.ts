@@ -14,7 +14,213 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessment_responses: {
+        Row: {
+          created_at: string
+          id: string
+          scores: Json
+          strongest_pillar: string | null
+          user_id: string
+          weakest_pillar: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          scores: Json
+          strongest_pillar?: string | null
+          user_id: string
+          weakest_pillar?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          scores?: Json
+          strongest_pillar?: string | null
+          user_id?: string
+          weakest_pillar?: string | null
+        }
+        Relationships: []
+      }
+      daily_completions: {
+        Row: {
+          created_at: string
+          day: string
+          id: string
+          items: Json
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          day?: string
+          id?: string
+          items?: Json
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          day?: string
+          id?: string
+          items?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
+      dare_completions: {
+        Row: {
+          completed_at: string
+          dare_id: string
+          dare_title: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          dare_id: string
+          dare_title?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          dare_id?: string
+          dare_title?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      gratitude_entries: {
+        Row: {
+          created_at: string
+          day: string
+          id: string
+          items: string[]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          day?: string
+          id?: string
+          items?: string[]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          day?: string
+          id?: string
+          items?: string[]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      prayer_entries: {
+        Row: {
+          answered: boolean
+          answered_at: string | null
+          body: string | null
+          created_at: string
+          id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          answered?: boolean
+          answered_at?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          answered?: boolean
+          answered_at?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          husband_name: string | null
+          marriage_date: string | null
+          onboarded: boolean
+          spiritual_season: string | null
+          timezone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          husband_name?: string | null
+          marriage_date?: string | null
+          onboarded?: boolean
+          spiritual_season?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          husband_name?: string | null
+          marriage_date?: string | null
+          onboarded?: boolean
+          spiritual_season?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      soap_entries: {
+        Row: {
+          application: string | null
+          created_at: string
+          day: string
+          id: string
+          observation: string | null
+          prayer: string | null
+          scripture_ref: string | null
+          scripture_text: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application?: string | null
+          created_at?: string
+          day?: string
+          id?: string
+          observation?: string | null
+          prayer?: string | null
+          scripture_ref?: string | null
+          scripture_text?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application?: string | null
+          created_at?: string
+          day?: string
+          id?: string
+          observation?: string | null
+          prayer?: string | null
+          scripture_ref?: string | null
+          scripture_text?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
