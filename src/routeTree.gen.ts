@@ -13,11 +13,24 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedVideosRouteImport } from './routes/_authenticated/videos'
 import { Route as AuthenticatedTodayRouteImport } from './routes/_authenticated/today'
+import { Route as AuthenticatedSoapRouteImport } from './routes/_authenticated/soap'
+import { Route as AuthenticatedShopRouteImport } from './routes/_authenticated/shop'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedMemoriesRouteImport } from './routes/_authenticated/memories'
 import { Route as AuthenticatedJourneyRouteImport } from './routes/_authenticated/journey'
+import { Route as AuthenticatedGamesRouteImport } from './routes/_authenticated/games'
 import { Route as AuthenticatedExploreRouteImport } from './routes/_authenticated/explore'
 import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
+import { Route as AuthenticatedCalendarRouteImport } from './routes/_authenticated/calendar'
+import { Route as AuthenticatedAssessmentRouteImport } from './routes/_authenticated/assessment'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedGamesWordsearchRouteImport } from './routes/_authenticated/games.wordsearch'
+import { Route as AuthenticatedGamesTriviaRouteImport } from './routes/_authenticated/games.trivia'
+import { Route as AuthenticatedCategorySlugRouteImport } from './routes/_authenticated/category.$slug'
+import { Route as AuthenticatedTopicCategorySlugRouteImport } from './routes/_authenticated/topic.$category.$slug'
+import { Route as AuthenticatedGamesCouplesSlugRouteImport } from './routes/_authenticated/games.couples.$slug'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -38,9 +51,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedVideosRoute = AuthenticatedVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTodayRoute = AuthenticatedTodayRouteImport.update({
   id: '/today',
   path: '/today',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSoapRoute = AuthenticatedSoapRouteImport.update({
+  id: '/soap',
+  path: '/soap',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedShopRoute = AuthenticatedShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
@@ -48,9 +76,19 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMemoriesRoute = AuthenticatedMemoriesRouteImport.update({
+  id: '/memories',
+  path: '/memories',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedJourneyRoute = AuthenticatedJourneyRouteImport.update({
   id: '/journey',
   path: '/journey',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedGamesRoute = AuthenticatedGamesRouteImport.update({
+  id: '/games',
+  path: '/games',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedExploreRoute = AuthenticatedExploreRouteImport.update({
@@ -63,26 +101,97 @@ const AuthenticatedCommunityRoute = AuthenticatedCommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCalendarRoute = AuthenticatedCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAssessmentRoute = AuthenticatedAssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedGamesWordsearchRoute =
+  AuthenticatedGamesWordsearchRouteImport.update({
+    id: '/wordsearch',
+    path: '/wordsearch',
+    getParentRoute: () => AuthenticatedGamesRoute,
+  } as any)
+const AuthenticatedGamesTriviaRoute =
+  AuthenticatedGamesTriviaRouteImport.update({
+    id: '/trivia',
+    path: '/trivia',
+    getParentRoute: () => AuthenticatedGamesRoute,
+  } as any)
+const AuthenticatedCategorySlugRoute =
+  AuthenticatedCategorySlugRouteImport.update({
+    id: '/category/$slug',
+    path: '/category/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTopicCategorySlugRoute =
+  AuthenticatedTopicCategorySlugRouteImport.update({
+    id: '/topic/$category/$slug',
+    path: '/topic/$category/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedGamesCouplesSlugRoute =
+  AuthenticatedGamesCouplesSlugRouteImport.update({
+    id: '/couples/$slug',
+    path: '/couples/$slug',
+    getParentRoute: () => AuthenticatedGamesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/assessment': typeof AuthenticatedAssessmentRoute
+  '/calendar': typeof AuthenticatedCalendarRoute
   '/community': typeof AuthenticatedCommunityRoute
   '/explore': typeof AuthenticatedExploreRoute
+  '/games': typeof AuthenticatedGamesRouteWithChildren
   '/journey': typeof AuthenticatedJourneyRoute
+  '/memories': typeof AuthenticatedMemoriesRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/shop': typeof AuthenticatedShopRoute
+  '/soap': typeof AuthenticatedSoapRoute
   '/today': typeof AuthenticatedTodayRoute
+  '/videos': typeof AuthenticatedVideosRoute
+  '/category/$slug': typeof AuthenticatedCategorySlugRoute
+  '/games/trivia': typeof AuthenticatedGamesTriviaRoute
+  '/games/wordsearch': typeof AuthenticatedGamesWordsearchRoute
+  '/games/couples/$slug': typeof AuthenticatedGamesCouplesSlugRoute
+  '/topic/$category/$slug': typeof AuthenticatedTopicCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/assessment': typeof AuthenticatedAssessmentRoute
+  '/calendar': typeof AuthenticatedCalendarRoute
   '/community': typeof AuthenticatedCommunityRoute
   '/explore': typeof AuthenticatedExploreRoute
+  '/games': typeof AuthenticatedGamesRouteWithChildren
   '/journey': typeof AuthenticatedJourneyRoute
+  '/memories': typeof AuthenticatedMemoriesRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/shop': typeof AuthenticatedShopRoute
+  '/soap': typeof AuthenticatedSoapRoute
   '/today': typeof AuthenticatedTodayRoute
+  '/videos': typeof AuthenticatedVideosRoute
+  '/category/$slug': typeof AuthenticatedCategorySlugRoute
+  '/games/trivia': typeof AuthenticatedGamesTriviaRoute
+  '/games/wordsearch': typeof AuthenticatedGamesWordsearchRoute
+  '/games/couples/$slug': typeof AuthenticatedGamesCouplesSlugRoute
+  '/topic/$category/$slug': typeof AuthenticatedTopicCategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -90,11 +199,24 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/assessment': typeof AuthenticatedAssessmentRoute
+  '/_authenticated/calendar': typeof AuthenticatedCalendarRoute
   '/_authenticated/community': typeof AuthenticatedCommunityRoute
   '/_authenticated/explore': typeof AuthenticatedExploreRoute
+  '/_authenticated/games': typeof AuthenticatedGamesRouteWithChildren
   '/_authenticated/journey': typeof AuthenticatedJourneyRoute
+  '/_authenticated/memories': typeof AuthenticatedMemoriesRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/shop': typeof AuthenticatedShopRoute
+  '/_authenticated/soap': typeof AuthenticatedSoapRoute
   '/_authenticated/today': typeof AuthenticatedTodayRoute
+  '/_authenticated/videos': typeof AuthenticatedVideosRoute
+  '/_authenticated/category/$slug': typeof AuthenticatedCategorySlugRoute
+  '/_authenticated/games/trivia': typeof AuthenticatedGamesTriviaRoute
+  '/_authenticated/games/wordsearch': typeof AuthenticatedGamesWordsearchRoute
+  '/_authenticated/games/couples/$slug': typeof AuthenticatedGamesCouplesSlugRoute
+  '/_authenticated/topic/$category/$slug': typeof AuthenticatedTopicCategorySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -102,32 +224,71 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/onboarding'
+    | '/admin'
+    | '/assessment'
+    | '/calendar'
     | '/community'
     | '/explore'
+    | '/games'
     | '/journey'
+    | '/memories'
     | '/profile'
+    | '/shop'
+    | '/soap'
     | '/today'
+    | '/videos'
+    | '/category/$slug'
+    | '/games/trivia'
+    | '/games/wordsearch'
+    | '/games/couples/$slug'
+    | '/topic/$category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/onboarding'
+    | '/admin'
+    | '/assessment'
+    | '/calendar'
     | '/community'
     | '/explore'
+    | '/games'
     | '/journey'
+    | '/memories'
     | '/profile'
+    | '/shop'
+    | '/soap'
     | '/today'
+    | '/videos'
+    | '/category/$slug'
+    | '/games/trivia'
+    | '/games/wordsearch'
+    | '/games/couples/$slug'
+    | '/topic/$category/$slug'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/onboarding'
+    | '/_authenticated/admin'
+    | '/_authenticated/assessment'
+    | '/_authenticated/calendar'
     | '/_authenticated/community'
     | '/_authenticated/explore'
+    | '/_authenticated/games'
     | '/_authenticated/journey'
+    | '/_authenticated/memories'
     | '/_authenticated/profile'
+    | '/_authenticated/shop'
+    | '/_authenticated/soap'
     | '/_authenticated/today'
+    | '/_authenticated/videos'
+    | '/_authenticated/category/$slug'
+    | '/_authenticated/games/trivia'
+    | '/_authenticated/games/wordsearch'
+    | '/_authenticated/games/couples/$slug'
+    | '/_authenticated/topic/$category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -167,11 +328,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/videos': {
+      id: '/_authenticated/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof AuthenticatedVideosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/today': {
       id: '/_authenticated/today'
       path: '/today'
       fullPath: '/today'
       preLoaderRoute: typeof AuthenticatedTodayRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/soap': {
+      id: '/_authenticated/soap'
+      path: '/soap'
+      fullPath: '/soap'
+      preLoaderRoute: typeof AuthenticatedSoapRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/shop': {
+      id: '/_authenticated/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof AuthenticatedShopRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/profile': {
@@ -181,11 +363,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/memories': {
+      id: '/_authenticated/memories'
+      path: '/memories'
+      fullPath: '/memories'
+      preLoaderRoute: typeof AuthenticatedMemoriesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/journey': {
       id: '/_authenticated/journey'
       path: '/journey'
       fullPath: '/journey'
       preLoaderRoute: typeof AuthenticatedJourneyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/games': {
+      id: '/_authenticated/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof AuthenticatedGamesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/explore': {
@@ -202,23 +398,114 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommunityRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/calendar': {
+      id: '/_authenticated/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AuthenticatedCalendarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assessment': {
+      id: '/_authenticated/assessment'
+      path: '/assessment'
+      fullPath: '/assessment'
+      preLoaderRoute: typeof AuthenticatedAssessmentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/games/wordsearch': {
+      id: '/_authenticated/games/wordsearch'
+      path: '/wordsearch'
+      fullPath: '/games/wordsearch'
+      preLoaderRoute: typeof AuthenticatedGamesWordsearchRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/games/trivia': {
+      id: '/_authenticated/games/trivia'
+      path: '/trivia'
+      fullPath: '/games/trivia'
+      preLoaderRoute: typeof AuthenticatedGamesTriviaRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
+    '/_authenticated/category/$slug': {
+      id: '/_authenticated/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof AuthenticatedCategorySlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/topic/$category/$slug': {
+      id: '/_authenticated/topic/$category/$slug'
+      path: '/topic/$category/$slug'
+      fullPath: '/topic/$category/$slug'
+      preLoaderRoute: typeof AuthenticatedTopicCategorySlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/games/couples/$slug': {
+      id: '/_authenticated/games/couples/$slug'
+      path: '/couples/$slug'
+      fullPath: '/games/couples/$slug'
+      preLoaderRoute: typeof AuthenticatedGamesCouplesSlugRouteImport
+      parentRoute: typeof AuthenticatedGamesRoute
+    }
   }
 }
 
+interface AuthenticatedGamesRouteChildren {
+  AuthenticatedGamesTriviaRoute: typeof AuthenticatedGamesTriviaRoute
+  AuthenticatedGamesWordsearchRoute: typeof AuthenticatedGamesWordsearchRoute
+  AuthenticatedGamesCouplesSlugRoute: typeof AuthenticatedGamesCouplesSlugRoute
+}
+
+const AuthenticatedGamesRouteChildren: AuthenticatedGamesRouteChildren = {
+  AuthenticatedGamesTriviaRoute: AuthenticatedGamesTriviaRoute,
+  AuthenticatedGamesWordsearchRoute: AuthenticatedGamesWordsearchRoute,
+  AuthenticatedGamesCouplesSlugRoute: AuthenticatedGamesCouplesSlugRoute,
+}
+
+const AuthenticatedGamesRouteWithChildren =
+  AuthenticatedGamesRoute._addFileChildren(AuthenticatedGamesRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAssessmentRoute: typeof AuthenticatedAssessmentRoute
+  AuthenticatedCalendarRoute: typeof AuthenticatedCalendarRoute
   AuthenticatedCommunityRoute: typeof AuthenticatedCommunityRoute
   AuthenticatedExploreRoute: typeof AuthenticatedExploreRoute
+  AuthenticatedGamesRoute: typeof AuthenticatedGamesRouteWithChildren
   AuthenticatedJourneyRoute: typeof AuthenticatedJourneyRoute
+  AuthenticatedMemoriesRoute: typeof AuthenticatedMemoriesRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedShopRoute: typeof AuthenticatedShopRoute
+  AuthenticatedSoapRoute: typeof AuthenticatedSoapRoute
   AuthenticatedTodayRoute: typeof AuthenticatedTodayRoute
+  AuthenticatedVideosRoute: typeof AuthenticatedVideosRoute
+  AuthenticatedCategorySlugRoute: typeof AuthenticatedCategorySlugRoute
+  AuthenticatedTopicCategorySlugRoute: typeof AuthenticatedTopicCategorySlugRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedAssessmentRoute: AuthenticatedAssessmentRoute,
+  AuthenticatedCalendarRoute: AuthenticatedCalendarRoute,
   AuthenticatedCommunityRoute: AuthenticatedCommunityRoute,
   AuthenticatedExploreRoute: AuthenticatedExploreRoute,
+  AuthenticatedGamesRoute: AuthenticatedGamesRouteWithChildren,
   AuthenticatedJourneyRoute: AuthenticatedJourneyRoute,
+  AuthenticatedMemoriesRoute: AuthenticatedMemoriesRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedShopRoute: AuthenticatedShopRoute,
+  AuthenticatedSoapRoute: AuthenticatedSoapRoute,
   AuthenticatedTodayRoute: AuthenticatedTodayRoute,
+  AuthenticatedVideosRoute: AuthenticatedVideosRoute,
+  AuthenticatedCategorySlugRoute: AuthenticatedCategorySlugRoute,
+  AuthenticatedTopicCategorySlugRoute: AuthenticatedTopicCategorySlugRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

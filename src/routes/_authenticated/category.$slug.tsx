@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { MobileShell } from "@/components/MobileShell";
-import { getCategory } from "@/lib/categories";
+import { getCategory, type Topic } from "@/lib/categories";
 import { SHIFTS } from "@/lib/daily-content";
 import { ChevronLeft, ChevronRight, BookOpen, Brain, Target, MessageSquare, Sparkles } from "lucide-react";
 
@@ -46,7 +46,7 @@ function CategoryPage() {
       </header>
 
       <main className="space-y-3 px-6 pt-6">
-        {cat.topics.map((t) => {
+        {cat.topics.map((t: Topic) => {
           const Icon = KIND_ICON[t.kind];
           const shift = SHIFTS.find((s) => s.key === t.shift)!;
           return (

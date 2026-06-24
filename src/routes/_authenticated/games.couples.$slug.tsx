@@ -46,7 +46,7 @@ function GamePage() {
         <section className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
           <h2 className="font-display text-xl">How to play</h2>
           <ol className="mt-3 space-y-3">
-            {game.steps.map((s, i) => (
+            {game.steps.map((s: string, i: number) => (
               <li key={i} className="flex gap-3">
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-rose/15 font-display text-sm text-rose">{i + 1}</span>
                 <p className="text-[15px] leading-snug">{s}</p>

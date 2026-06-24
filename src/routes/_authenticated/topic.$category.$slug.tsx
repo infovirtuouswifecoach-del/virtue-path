@@ -102,7 +102,7 @@ function TopicPage() {
         <section className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
           <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Walk it out</p>
           <ol className="mt-3 space-y-3">
-            {topic.steps.map((s, i) => (
+            {topic.steps.map((s: string, i: number) => (
               <li key={i} className="flex gap-3">
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-rose/15 font-display text-sm text-rose">{i + 1}</span>
                 <p className="text-[15px] leading-snug">{s}</p>
