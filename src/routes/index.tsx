@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link, useNavigate } from "@tanstack/react-router";
@@ -31,12 +31,13 @@ function Landing() {
           alt="Sunrise behind an olive branch"
           width={1280}
           height={896}
-          className="aspect-[5/4] w-full object-cover"
+          className="aspect-[4/3] w-full object-cover"
         />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-background/70 to-background" />
       </div>
 
-      <div className="-mt-10 px-7 pb-12">
+      {/* Pulled the headline down so the hero image no longer covers it. */}
+      <div className="px-7 pb-12 pt-6">
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">The Virtuous Wife App™</p>
         <h1 className="mt-3 font-display text-[2.6rem] leading-[1.05]">
           Become the woman <em className="text-rose">God</em> called you to be.

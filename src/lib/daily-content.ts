@@ -1,5 +1,4 @@
-// Daily seed content. Selection rotates by day-of-year so every woman in the
-// app sees the same daily verse / dare / fact (a shared spiritual rhythm).
+// Daily seed content. Shared spiritual rhythm — rotates by day-of-year.
 
 export type Verse = {
   reference: string;
@@ -21,7 +20,7 @@ export const VERSES: Verse[] = [
   {
     reference: "Ephesians 4:2",
     text: "Be completely humble and gentle; be patient, bearing with one another in love.",
-    insight: "Marriage is the workshop where humility is forged. Practice gentleness in the small moments today.",
+    insight: "Relationships are the workshop where humility is forged. Practice gentleness in the small moments today.",
   },
   {
     reference: "1 Peter 3:3-4",
@@ -45,22 +44,10 @@ export const VERSES: Verse[] = [
   },
 ];
 
-export type Dare = { id: string; title: string; body: string };
-
-export const DARES: Dare[] = [
-  { id: "d-affirm", title: "Affirm Him", body: "Tell your husband one specific quality you admire about him today. Be specific. Be sincere." },
-  { id: "d-pray", title: "Pray Over Him", body: "Quietly pray a blessing over your husband — out loud if you can, even while he sleeps." },
-  { id: "d-thank", title: "Thank Him", body: "Thank your husband for one thing he does that you usually take for granted." },
-  { id: "d-serve", title: "Serve Him", body: "Do one small act of service today without being asked — and without expecting thanks." },
-  { id: "d-encourage", title: "Encourage Him", body: "Send him a text mid-day reminding him you believe in him." },
-  { id: "d-listen", title: "Listen Fully", body: "When he speaks today, set down your phone, look at him, and listen without preparing your response." },
-  { id: "d-touch", title: "Gentle Touch", body: "Offer a gentle, non-demanding touch — a hand on his back, a hug, a kiss on the cheek." },
-];
-
 export const FUN_FACTS = [
   { text: "The word 'helper' used for Eve (ezer) is also used 16 times in the Old Testament to describe God Himself.", verse: "Genesis 2:18" },
   { text: "The Hebrew word for 'virtuous' in Proverbs 31 (chayil) is the same word used for valiant warriors.", verse: "Proverbs 31:10" },
-  { text: "Jesus' first miracle was at a wedding — God delights in marriage.", verse: "John 2:1-11" },
+  { text: "Jesus' first miracle was at a wedding — God delights in covenant.", verse: "John 2:1-11" },
   { text: "The Bible begins with a wedding (Adam and Eve) and ends with a wedding (the Lamb and His Bride).", verse: "Revelation 19:7" },
 ];
 
@@ -74,26 +61,24 @@ function dayIndex(): number {
 export function getDailyVerse(): Verse {
   return VERSES[dayIndex() % VERSES.length];
 }
-export function getDailyDare(): Dare {
-  return DARES[dayIndex() % DARES.length];
-}
 export function getDailyFunFact() {
   return FUN_FACTS[dayIndex() % FUN_FACTS.length];
 }
 
-export const PILLARS = [
+// V.I.R.T.U.E. — renamed from "pillars" to "shifts"
+export const SHIFTS = [
   {
     key: "V",
     name: "Vision",
     tagline: "God's vision for your life, marriage, and legacy.",
-    description: "Marriage Vision Board, Family Mission Statement, Legacy Planning.",
+    description: "See your life through Heaven's eyes — and walk it out with clarity.",
     accent: "rose" as const,
   },
   {
     key: "I",
     name: "Intentional Intimacy",
-    tagline: "Closeness with God, self, husband, and family.",
-    description: "Daily Revival Verse, SOAP Bible Study, Dare Cards, Prayer Journal.",
+    tagline: "Closeness with God, self, and the people you love.",
+    description: "Daily Revival Verse, SOAP, Dares, Prayer Journal.",
     accent: "gold" as const,
   },
   {
@@ -114,7 +99,7 @@ export const PILLARS = [
     key: "U",
     name: "Uplift & Serve",
     tagline: "Love in action — at home, church, and community.",
-    description: "Service, Respect, Gratitude, Kindness, and Hospitality challenges.",
+    description: "Service, respect, gratitude, kindness, hospitality.",
     accent: "gold" as const,
   },
   {
@@ -124,4 +109,6 @@ export const PILLARS = [
     description: "Prayer Warrior Center, Titus 2 Community, Testimony Journal.",
     accent: "sage" as const,
   },
-];
+] as const;
+
+export type ShiftKey = typeof SHIFTS[number]["key"];
