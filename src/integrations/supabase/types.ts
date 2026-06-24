@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          created_at: string
+          event_path: string | null
+          event_type: string
+          id: string
+          metadata: Json
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_path?: string | null
+          event_type: string
+          id?: string
+          metadata?: Json
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_path?: string | null
+          event_type?: string
+          id?: string
+          metadata?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
       assessment_responses: {
         Row: {
           created_at: string
@@ -38,6 +65,39 @@ export type Database = {
           strongest_pillar?: string | null
           user_id?: string
           weakest_pillar?: string | null
+        }
+        Relationships: []
+      }
+      calendar_events: {
+        Row: {
+          created_at: string
+          event_date: string
+          event_type: string
+          id: string
+          notes: string | null
+          recurring: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_date: string
+          event_type?: string
+          id?: string
+          notes?: string | null
+          recurring?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_date?: string
+          event_type?: string
+          id?: string
+          notes?: string | null
+          recurring?: string | null
+          title?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -113,6 +173,45 @@ export type Database = {
         }
         Relationships: []
       }
+      memories: {
+        Row: {
+          created_at: string
+          id: string
+          latitude: number | null
+          location_name: string
+          longitude: number | null
+          memory_date: string | null
+          note: string | null
+          photo_url: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          location_name: string
+          longitude?: number | null
+          memory_date?: string | null
+          note?: string | null
+          photo_url?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          location_name?: string
+          longitude?: number | null
+          memory_date?: string | null
+          note?: string | null
+          photo_url?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       prayer_entries: {
         Row: {
           answered: boolean
@@ -146,10 +245,15 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          biggest_struggle: string | null
+          children: Json
           created_at: string
           display_name: string | null
+          going_well: string | null
           husband_name: string | null
+          marital_status: string | null
           marriage_date: string | null
+          marriage_length_years: number | null
           onboarded: boolean
           spiritual_season: string | null
           timezone: string | null
@@ -158,10 +262,15 @@ export type Database = {
         }
         Insert: {
           avatar_url?: string | null
+          biggest_struggle?: string | null
+          children?: Json
           created_at?: string
           display_name?: string | null
+          going_well?: string | null
           husband_name?: string | null
+          marital_status?: string | null
           marriage_date?: string | null
+          marriage_length_years?: number | null
           onboarded?: boolean
           spiritual_season?: string | null
           timezone?: string | null
@@ -170,15 +279,62 @@ export type Database = {
         }
         Update: {
           avatar_url?: string | null
+          biggest_struggle?: string | null
+          children?: Json
           created_at?: string
           display_name?: string | null
+          going_well?: string | null
           husband_name?: string | null
+          marital_status?: string | null
           marriage_date?: string | null
+          marriage_length_years?: number | null
           onboarded?: boolean
           spiritual_season?: string | null
           timezone?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      shop_products: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          external_url: string | null
+          id: string
+          image_url: string | null
+          price_cents: number | null
+          product_type: string
+          published: boolean
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          image_url?: string | null
+          price_cents?: number | null
+          product_type?: string
+          published?: boolean
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          external_url?: string | null
+          id?: string
+          image_url?: string | null
+          price_cents?: number | null
+          product_type?: string
+          published?: boolean
+          sort_order?: number
+          title?: string
         }
         Relationships: []
       }
@@ -221,15 +377,81 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      videos: {
+        Row: {
+          category: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          published: boolean
+          sort_order: number
+          thumbnail_url: string | null
+          title: string
+          youtube_url: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title: string
+          youtube_url: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title?: string
+          youtube_url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "member"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -356,6 +578,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "member"],
+    },
   },
 } as const
