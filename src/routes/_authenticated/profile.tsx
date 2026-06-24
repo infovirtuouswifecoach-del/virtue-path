@@ -1,21 +1,23 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { MobileShell } from "@/components/MobileShell";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { LogOut, Save, Heart } from "lucide-react";
+import { LogOut, Save, Heart, Shield, Map, Calendar, Video, ShoppingBag, Gamepad2, ClipboardList, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
+import { isAdmin } from "@/lib/activity";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   component: ProfilePage,
 });
 
-const SEASONS = ["Newlywed", "Young Family", "Established", "Empty Nest", "Single Again", "Engaged"];
+const SEASONS = ["Newlywed", "Young Family", "Established", "Empty Nest", "Single Season", "Engaged"];
 
 function ProfilePage() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const [email, setEmail] = useState("");
+  const [admin, setAdmin] = useState(false);
   const [form, setForm] = useState({
     display_name: "", husband_name: "", marriage_date: "", spiritual_season: "",
   });
@@ -26,6 +28,7 @@ function ProfilePage() {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) return;
       setEmail(u.user.email ?? "");
+      setAdmin(await isAdmin());
       const { data: p } = await supabase
         .from("profiles")
         .select("display_name, husband_name, marriage_date, spiritual_season")
@@ -71,11 +74,20 @@ function ProfilePage() {
       </header>
 
       <main className="space-y-5 px-6 pt-6">
+        <section className="space-y-2">
+          <Quick to="/assessment" Icon={ClipboardList} label="Marriage Alignment Assessment" />
+          <Quick to="/memories" Icon={Map} label="Memory Map" />
+          <Quick to="/calendar" Icon={Calendar} label="Calendar" />
+          <Quick to="/videos" Icon={Video} label="Video Library" />
+          <Quick to="/shop" Icon={ShoppingBag} label="Shop Virtuous" />
+          <Quick to="/games" Icon={Gamepad2} label="Games & Challenges" />
+          {admin && <Quick to="/admin" Icon={Shield} label="Admin Dashboard" />}
+        </section>
+
         <section className="space-y-3 rounded-3xl border border-border/60 bg-card p-5 shadow-soft">
           <Field label="Your name" value={form.display_name} onChange={(v) => setForm({ ...form, display_name: v })} />
           <Field label="Husband's first name" value={form.husband_name} onChange={(v) => setForm({ ...form, husband_name: v })} />
           <Field label="Marriage date" type="date" value={form.marriage_date} onChange={(v) => setForm({ ...form, marriage_date: v })} />
-
           <div>
             <span className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">Spiritual season</span>
             <div className="flex flex-wrap gap-2">
@@ -94,7 +106,6 @@ function ProfilePage() {
               ))}
             </div>
           </div>
-
           <button
             onClick={save}
             disabled={saving}
@@ -126,6 +137,18 @@ function ProfilePage() {
         </p>
       </main>
     </MobileShell>
+  );
+}
+
+function Quick({ to, Icon, label }: { to: string; Icon: React.ComponentType<{ className?: string }>; label: string }) {
+  return (
+    <Link to={to} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-3 shadow-soft">
+      <div className="grid h-10 w-10 place-items-center rounded-xl bg-rose/15">
+        <Icon className="h-4 w-4 text-rose" />
+      </div>
+      <p className="flex-1 text-[15px]">{label}</p>
+      <ChevronRight className="h-4 w-4 text-rose" />
+    </Link>
   );
 }
 
