@@ -1,6 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 
-export async function logActivity(eventType: string, path?: string, metadata?: Record<string, unknown>) {
+export async function logActivity(eventType: string, path?: string, metadata?: Record<string, string | number | boolean | null>) {
   try {
     const { data: u } = await supabase.auth.getUser();
     if (!u.user) return;
